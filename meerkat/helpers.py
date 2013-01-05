@@ -10,13 +10,13 @@ def slugify(text):
     }
 
     if type(text) is str:
-      text = text.decode('utf-8')
+        text = text.decode('utf-8')
     else:
-      text = unicode(text)
+        text = unicode(text)
 
     text = text.lower()
-    for k, v in chars.items():
-        text = text.replace(k, v)
+    for key, val in chars.items():
+        text = text.replace(key, val)
     text = text.replace('_', '-')
     text = non_alpha.sub('-', text).strip('-')
 
