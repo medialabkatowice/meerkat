@@ -1,0 +1,7 @@
+argparse==1.2.1
+nose==1.2.1
+pep8==1.2
+python-termstyle==0.1.10
+rednose==0.3.3
+tissue==0.7
+wsgiref==0.1.2
