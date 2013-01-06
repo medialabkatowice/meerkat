@@ -1,6 +1,13 @@
 argparse==1.2.1
+cov-core==1.7
+coverage==3.6
+logilab-astng==0.24.1
+logilab-common==0.58.3
+mock==1.0.1
 nose==1.2.1
+nose-cov==1.6
 pep8==1.2
+pylint==0.26.0
 python-termstyle==0.1.10
 rednose==0.3.3
 tissue==0.7

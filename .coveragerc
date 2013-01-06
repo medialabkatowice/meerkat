@@ -1,0 +1,6 @@
+[run]
+omit = *mock*
+
+[report]
+omot = *mock*
+    

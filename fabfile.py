@@ -6,7 +6,7 @@ def style_test():
     local("pep8 --ignore=E127,E203,E221 meerkat")
 
 def unit_test():
-    local("nosetests --rednose")
+    local("nosetests --rednose --with-coverage")
 
 def test():
     style_test()
