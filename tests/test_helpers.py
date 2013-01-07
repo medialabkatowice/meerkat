@@ -62,7 +62,7 @@ def test_csv_opts_defaults():
 
 
 def test_csv_opts_overriding_defaults():
-    opts == {
+    opts = {
         u'header'   : False,
         u'delimiter': u'|',
         u'quotechar': u',,',
@@ -80,7 +80,7 @@ def test_csv_opts_overriding_defaults():
 
 
 def test_csv_opts_overriding_selected_defaults():
-    opts == {
+    opts = {
         u'header'   : False,
         u'encoding' : u'utf-16'
     }
