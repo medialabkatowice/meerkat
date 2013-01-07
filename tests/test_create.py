@@ -355,6 +355,98 @@ def test_create_from_file_no_header_with_custom_labels():
         }
 
 
-# TODO test delimiter
-# TODO test quotechar
-# TODO test encoding
+def test_create_from_file_with_custom_csv_opts():
+    data = u'''# data file example
+    *Gęśl*|*_gĘśl 1*|*gesl*
+    1|2|3
+    4|5|6
+
+    1|2|3
+
+    # special row
+    7|*X*|9.0
+    '''.encode('utf-8')
+
+    with patch('__main__.open', mock_open(read_data=data), create=True) as m:
+        t = meerkat.Table('data.csv', delimiter='|', quotechar='*')
+
+        assert m.assert_called_once_with('data.csv', 'r')
+
+        assert t.rows_count == 4
+        assert t.cols_count == 3
+        assert t.schema == [
+            {
+                u'label': u'Gęśl',
+                u'slug' : u'gesl',
+                u'index': 0,
+                u'type' : int
+            },
+            {
+                u'label': u'_gĘśl 1',
+                u'slug' : u'gesl-1',
+                u'index': 1,
+                u'type' : unicode
+            },
+            {
+                u'label': u'gesl',
+                u'slug' : u'gesl',
+                u'index': 2,
+                u'type' : float
+            }
+        ]
+        assert t.csv_opts == {
+            u'path'     : 'data.csv',
+            u'header'   : True,
+            u'delimiter': u'|',
+            u'quotechar': u'*',
+            u'encoding' : u'utf-8'
+        }
+
+
+def test_create_from_file_with_different_encoding():
+    data = u'''# data file example
+    "Gęśl";"_gĘśl 1";"gesl"
+    1;2;3
+    4;5;6
+
+    1;2;3
+
+    # special row
+    7;"X";9.0
+    '''.encode('cp1250')
+
+    with patch('__main__.open', mock_open(read_data=data), create=True) as m:
+        t = meerkat.Table('data.csv', encoding='cp1250')
+
+        assert m.assert_called_once_with('data.csv', 'r')
+
+        assert t.rows_count == 4
+        assert t.cols_count == 3
+        assert t.schema == [
+            {
+                u'label': u'Gęśl',
+                u'slug' : u'gesl',
+                u'index': 0,
+                u'type' : int
+            },
+            {
+                u'label': u'_gĘśl 1',
+                u'slug' : u'gesl-1',
+                u'index': 1,
+                u'type' : unicode
+            },
+            {
+                u'label': u'gesl',
+                u'slug' : u'gesl',
+                u'index': 2,
+                u'type' : float
+            }
+        ]
+        assert t.csv_opts == {
+            u'path'     : 'data.csv',
+            u'header'   : True,
+            u'delimiter': u';',
+            u'quotechar': u'"',
+            u'encoding' : u'cp1250'
+        }
+
