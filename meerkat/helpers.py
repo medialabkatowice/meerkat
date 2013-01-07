@@ -3,7 +3,7 @@
 def slugify(text):
     import re
     non_alpha = re.compile(r'\W+')
-    chars = { 
+    chars = {
         u'ą': u'a', u'ż': u'z', u'ś': u's',
         u'ź': u'z', u'ę': u'e', u'ć': u'c',
         u'ń': u'n', u'ó': u'o', u'ł': u'l'
@@ -23,15 +23,8 @@ def slugify(text):
     return text
 
 
-def get_opts(opts):
-    csv_opts = {
-        'delimiter': opts.get('delimiter', ';'),
-        'quotechar': opts.get('quotechar', '"')
-    }
-    has_header = opts.get('header', True)
-    how_deep   = opts.get('how_deep', 0)
-
-    return (csv_opts, has_header, how_deep)
+def csv_opts(opts):
+    return {}
 
 
 def discover_type_of(column):
@@ -48,12 +41,12 @@ def discover_type_of(column):
             if not cell.strip():
                 empty_cells += 1
                 continue
-            
+
             try:
                 cast(cell)
             except:
                 break
-        # if run to the end of cells... 
+        # if run to the end of cells...
         else:
             # ...break types iteration
             break
