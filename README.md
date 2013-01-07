@@ -14,4 +14,4 @@ the data wrangling workshops for beginners.
 License
 -------
 
-The code is published as a part of Public Domain.
+The code is published under [3-clause BSD](https://github.com/medialabkatowice/meerkat/blob/master/LICENSE.md "3-clause BSD license") license.
