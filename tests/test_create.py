@@ -76,7 +76,7 @@ def test_create_table_from_list():
 
 
 def test_create_from_file():
-    data = '''# data file example
+    data = u'''# data file example
     "Gęśl";"_gĘśl 1";"gesl"
     1;2;3
     4;5;6
@@ -85,8 +85,9 @@ def test_create_from_file():
 
     # special row
     7;"X";9.0
-    '''
+    '''.encode('utf-8')
 
+    import pdb; pdb.set_trace()
     with patch('__main__.open', mock_open(read_data=data), create=True) as m:
         t = meerkat.Table('data.csv')
 
@@ -179,7 +180,7 @@ def test_create_empty_table_with_labels_and_types():
 
 
 def test_create_from_file_with_custom_labels():
-    data = '''# data file example
+    data = u'''# data file example
     "Gęśl";"_gĘśl 1";"gesl"
     1;2;3
     4;5;6
@@ -188,7 +189,7 @@ def test_create_from_file_with_custom_labels():
 
     # special row
     7;"X";9.0
-    '''
+    '''.encode('utf-8')
     labels = [u'Jaźń', u'_jAźń 1', u'jazn']
 
     with patch('__main__.open', mock_open(read_data=data), create=True) as m:
@@ -261,7 +262,7 @@ def test_create_table_with_custom_types():
 
 
 def test_create_from_file_no_header():
-    data = '''# data file example
+    data = u'''# data file example
     1;2;3
     4;5;6
 
@@ -269,7 +270,7 @@ def test_create_from_file_no_header():
 
     # special row
     7;"X";9.0
-    '''
+    '''.encode('utf-8')
 
     with patch('__main__.open', mock_open(read_data=data), create=True) as m:
         t = meerkat.Table('data.csv', csv_header=False)
@@ -308,7 +309,7 @@ def test_create_from_file_no_header():
 
 
 def test_create_from_file_no_header_with_custom_labels():
-    data = '''# data file example
+    data = u'''# data file example
     1;2;3
     4;5;6
 
@@ -316,7 +317,7 @@ def test_create_from_file_no_header_with_custom_labels():
 
     # special row
     7;"X";9.0
-    '''
+    '''.encode('utf-8')
     labels = [u'Jaźń', u'_jAźń 1', u'jazn']
 
     with patch('__main__.open', mock_open(read_data=data), create=True) as m:
