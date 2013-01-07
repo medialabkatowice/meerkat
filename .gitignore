@@ -36,3 +36,6 @@ nosetests.xml
 
 # vim related
 *.sw[op]
+
+# Sphinx build
+_build

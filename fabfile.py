@@ -11,3 +11,17 @@ def unit_test():
 def test():
     style_test()
     unit_test()
+
+def docs(browser='firefox'):
+    local("%s docs/_build/html/index.html &" % browser)
+
+def make_docs():
+    with lcd("docs"):
+        local("make html")
+
+def update():
+    local("git checkout dev")
+    local("git pull origin dev")
+    make_docs()
+    local("git diff")
+
