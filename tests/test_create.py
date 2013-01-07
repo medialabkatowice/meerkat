@@ -87,7 +87,6 @@ def test_create_from_file():
     7;"X";9.0
     '''.encode('utf-8')
 
-    import pdb; pdb.set_trace()
     with patch('__main__.open', mock_open(read_data=data), create=True) as m:
         t = meerkat.Table('data.csv')
 
