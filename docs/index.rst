@@ -98,12 +98,14 @@ Table constructor
 
    Table constructor takes several optional arguments:
 
-   - *labels* is a list of strings (or unicodes) to be used as column labels (and derived column slugs)
+   - *labels* is a list of strings (or unicodes) to be used as column labels
+     (and derived column slugs)
    - *types* is a list of python types to be used for storing data in each
      column. Types available are *int*, *float* and *unicode*. It's especially
      helpfull when a numeric values are string labels and should be treated as
      such (e.g. personal ID).
-   - *\*\*csv_opts* is a collection of csv related arguments (here shown with defaults):
+   - *\*\*csv_opts* is a collection of csv related arguments (here shown with
+     defaults):
      ::
       {
           u'header'   : True,     # whether file has a header row or not
@@ -130,7 +132,8 @@ Table attributes
 
 .. attribute:: schema
 
-   List containing basic information about columns in the table. Each column is described by a dict:
+   List containing basic information about columns in the table. Each column is
+   described by a dict:
    ::
     [
         {
@@ -150,7 +153,8 @@ Table attributes
 
 .. attribute:: csv_opts
 
-   All information needed to create a csv file to write the table data. The csv_opts is such a dict:
+   All information needed to create a csv file to write the table data. The
+   csv_opts is such a dict:
    ::
     {
         u'path'     : '/path/to/file.csv',
@@ -160,6 +164,46 @@ Table attributes
         u'encoding' : u'utf-8'
     }
 
+Table methods
+-------------
+
+.. method:: rows(self, as_dict=False)
+
+   A list of rows represented as lists of values. This method returns
+   a generator object to such a list of lists.
+   ::
+    [
+        [ 1, 2, 3 ],
+        [ 4, 5, 6 ]
+    ]
+   
+   Rows can be represented as dicts if *as_dict* agrument is set to True (the
+   generator is returned as well).
+   ::
+    [
+        {
+            u'Column 1': 1,
+            u'Column 2': 2,
+            u'Column 3': 3
+        },
+        {
+            u'Column 4': 4,
+            u'Column 5': 5,
+            u'Column 6': 6
+        }
+    ]
+
+.. method:: columns(self)
+
+   A list of columns represented as lists of values. This method returns
+   a generator object to such a list of lists.
+   ::
+    [
+        [ 1, 4 ],  # Column 1
+        [ 2, 5 ],  # Column 2
+        [ 3, 6 ]   # Column 3
+    ]
+   
 
 Indices and tables
 ==================
