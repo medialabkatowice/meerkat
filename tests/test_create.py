@@ -420,8 +420,35 @@ def test_create_from_file_with_different_encoding():
             u'encoding' : u'cp1250'
         }
 
+
+def test_create_unicode_as_default_type():
+    labels = [u'Jaźń', u'_jAźń 1', u'jazn']
+
+    t = meerkat.Table(labels=labels)
+
+    assert list(t.schema()) == [
+        {
+            u'label': u'Jaźń',
+            u'slug' : u'jazn',
+            u'type' : unicode
+        },
+        {
+            u'label': u'_jAźń 1',
+            u'slug' : u'jazn-1',
+            u'type' : unicode
+        },
+        {
+            u'label': u'jazn',
+            u'slug' : u'jazn',
+            u'type' : unicode
+        }
+    ]
+
 @raises(SchemaError)
 def test_create_with_duplicated_column_labels():
     labels = [ u'zażółć', u'gęślą', u'zażółć' ]
 
     t = meerkat.Table(labels=labels)
+
+
+
