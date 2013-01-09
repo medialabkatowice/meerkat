@@ -1,5 +1,6 @@
 # coding: utf-8
 import meerkat
+from meerkat.errors import SchemaError
 from nose.tools import raises
 from mock import mock_open
 from mock import patch
