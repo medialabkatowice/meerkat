@@ -91,3 +91,23 @@ def test_modify_schema_with_different_length():
 
     t = meerkat.Table(labels=labels, types=types)
     t.schema(new_schema)
+
+
+@raises(SchemaError)
+def test_modify_schema_with_duplicated_labels():
+    labels = [ u'zażółć', u'gęslą', u'jaźń' ]
+    types  = [ int      , float   , unicode ]
+
+    new_schema = [
+        {
+            u'label': u'Kot Wincenty',
+            u'type' : unicode
+        },
+        {
+            u'label': u'Kot Wincenty',
+            u'type' : float
+        }
+    ]
+
+    t = meerkat.Table(labels=labels, types=types)
+    t.schema(new_schema)
