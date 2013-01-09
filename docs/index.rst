@@ -130,27 +130,6 @@ Table attributes
    Number of columns in the table
 
 
-.. attribute:: schema
-
-   List containing basic information about columns in the table. Each column is
-   described by a dict:
-   ::
-    [
-        {
-            u'label': u'Full name of the column',
-            u'slug' : u'full-name-of-the-column',
-            u'index': 0,
-            u'type' : unicode
-        },
-        {
-            u'label': u'Full name of another column',
-            u'slug' : u'full-name-of-another-column',
-            u'index': 1,
-            u'type' : float
-        }
-    ]
-
-
 .. attribute:: csv_opts
 
    All information needed to create a csv file to write the table data. The
@@ -164,8 +143,9 @@ Table attributes
         u'encoding' : u'utf-8'
     }
 
+
 Table methods
--------------
+------------------------
 
 .. method:: rows(self, as_dict=False)
 
@@ -252,6 +232,43 @@ Table methods
     t.value(0, u'Column 1')
     t.value(0, u'column-1')
 
+.. method:: schema(self, new_schema=None)
+
+   Returns a generator to the list containing basic information about columns
+   in the table. Each column is described by a dict:
+   ::
+    [
+        {
+            u'label': u'Full name of the column',
+            u'slug' : u'full-name-of-the-column',
+            u'type' : unicode
+        },
+        {
+            u'label': u'Full name of another column',
+            u'slug' : u'full-name-of-another-column',
+            u'type' : float
+        }
+    ]
+
+   If *new_schema* is provided, meerkat tries to overwrite the previous schema by
+   casting all values in the table according to new schema. If it's not
+   successful meerkat will raise the SchemaError. It will raise the same error
+   if the length of *new_schema* is different than the current one.
+
+   Each column in *new_schema* should be described by at least *label* and
+   *type* with *slug* being optional and created, if not provided.
+
+.. method:: append(self, row)
+
+   Appends *row* into the table. If values inside *row* can't be cast according
+   to the schema, SchemaError is raised. 
+
+.. method:: dump(self, \*\*csv_opts)
+
+   Writes table data into the file specified by tables *csv_opts* attribute.
+   The *csv_opts* attribute can be overwritten (partially or in total) by the
+   *csv_opts* parameter. If no *path* is provided (either in table's attribute
+   or dump's parameter) NoFileError is raised.
 
 Indices and tables
 ==================

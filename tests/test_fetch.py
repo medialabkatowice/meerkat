@@ -94,3 +94,27 @@ def test_fetch_value_by_slug():
     assert list(t.value(0, u'column-1')) == 1
 
 
+def test_fetch_schema():
+    labels = [ u'zażółć', u'gęslą', u'jaźń' ]
+    types  = [ int      , float   , unicode ]
+
+    t = meerkat.Table(labels=labels, types=types)
+
+    assert type(t.schema()) == types.GeneratorType
+    assert list(t.schema()) == [
+        {
+            u'label': u'zażółć',
+            u'slug' : u'zazolc',
+            u'type' : int
+        },
+        {
+            u'label': u'gęslą',
+            u'slug' : u'gesla',
+            u'type' : float
+        },
+        {
+            u'label': u'jaźń',
+            u'slug' : u'jazn',
+            u'type' : unicode
+        }
+    ]
