@@ -204,6 +204,54 @@ Table methods
         [ 3, 6 ]   # Column 3
     ]
    
+.. method:: row(self, index, as_dict=False)
+
+   Returns a generator to a specified row represented as a list of values.
+   ::
+    [ 1, 2, 3, 4 ]
+
+   Row's values can be represented as dicts if *as_dict* os set to True.
+   ::
+    {
+        u'Column 1': 1,
+        u'Column 2': 2,
+        u'Column 3': 3,
+        u'Column 4': 4
+    }
+
+.. method:: column(self, index)
+
+   Returns a generator to a specified column represented as a list of values.
+   ::
+    [ 1, 4, 7 ]
+
+   *index* can be one of these:
+    
+     - column index as int
+     - column name as unicode
+     - column slug as unicode
+   
+   So all calls below are equivalent:
+   ::
+    t.column(0)
+    t.column(u'Column 1')
+    t.column(u'column-1')
+
+.. method:: value(self, row_index, col_index)
+
+   Returns a value of cell (*row_index*, *col_index*). The *col_index* argument
+   can be one of these:
+
+     - column index as int
+     - column name as unicode
+     - column slug as unicode
+   
+   So all calls below are equivalent:
+   ::
+    t.value(0, 0)
+    t.value(0, u'Column 1')
+    t.value(0, u'column-1')
+
 
 Indices and tables
 ==================
