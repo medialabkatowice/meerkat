@@ -420,3 +420,8 @@ def test_create_from_file_with_different_encoding():
             u'encoding' : u'cp1250'
         }
 
+@raises(SchemaError)
+def test_create_with_duplicated_column_labels():
+    labels = [ u'zażółć', u'gęślą', u'zażółć' ]
+
+    t = meerkat.Table(labels=labels)
