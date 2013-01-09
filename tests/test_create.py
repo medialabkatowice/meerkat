@@ -20,17 +20,14 @@ def test_create_table_from_dict():
     assert list(t.schema()) == [
         {
             u'label': u'Gęśl',
-            u'slug' : u'gesl',
             u'type' : int
         },
         {
             u'label': u'_gĘśl 1',
-            u'slug' : u'gesl-1',
             u'type' : unicode
         },
         {
             u'label': u'gesl',
-            u'slug' : u'gesl',
             u'type' : float
         }
     ]
@@ -52,17 +49,14 @@ def test_create_table_from_list():
     assert list(t.schema()) == [
         {
             u'label': u'Column 1',
-            u'slug' : u'column-1',
             u'type' : int
         },
         {
             u'label': u'Column 2',
-            u'slug' : u'column-2',
             u'type' : unicode
         },
         {
             u'label': u'Column 3',
-            u'slug' : u'column-3',
             u'type' : float
         }
     ]
@@ -91,17 +85,14 @@ def test_create_from_file():
         assert list(t.schema()) == [
             {
                 u'label': u'Gęśl',
-                u'slug' : u'gesl',
                 u'type' : int
             },
             {
                 u'label': u'_gĘśl 1',
-                u'slug' : u'gesl-1',
                 u'type' : unicode
             },
             {
                 u'label': u'gesl',
-                u'slug' : u'gesl',
                 u'type' : float
             }
         ]
@@ -149,17 +140,14 @@ def test_create_empty_table_with_labels_and_types():
     assert list(t.schema()) == [
         {
             u'label': u'Gęśl',
-            u'slug' : u'gesl',
             u'type' : int
         },
         {
             u'label': u'_gĘśl 1',
-            u'slug' : u'gesl-1',
             u'type' : unicode
         },
         {
             u'label': u'gesl',
-            u'slug' : u'gesl',
             u'type' : float
         }
     ]
@@ -189,17 +177,14 @@ def test_create_from_file_with_custom_labels():
         assert list(t.schema()) == [
             {
                 u'label': u'Jaźń',
-                u'slug' : u'jazn',
                 u'type' : int
             },
             {
                 u'label': u'_jAźń 1',
-                u'slug' : u'jazn-1',
                 u'type' : unicode
             },
             {
                 u'label': u'jazn',
-                u'slug' : u'jazn',
                 u'type' : float
             }
         ]
@@ -226,17 +211,14 @@ def test_create_table_with_custom_types():
     assert list(t.schema()) == [
         {
             u'label': u'Column 1',
-            u'slug' : u'column-1',
             u'type' : unicode
         },
         {
             u'label': u'Column 2',
-            u'slug' : u'column-2',
             u'type' : unicode
         },
         {
             u'label': u'Column 3',
-            u'slug' : u'column-3',
             u'type' : float
         }
     ]
@@ -263,17 +245,14 @@ def test_create_from_file_no_header():
         assert list(t.schema()) == [
             {
                 u'label': u'Column 1',
-                u'slug' : u'column-1',
                 u'type' : int
             },
             {
                 u'label': u'Column 2',
-                u'slug' : u'column-2',
                 u'type' : unicode
             },
             {
                 u'label': u'Column 3',
-                u'slug' : u'column-3',
                 u'type' : float
             }
         ]
@@ -308,17 +287,14 @@ def test_create_from_file_no_header_with_custom_labels():
         assert list(t.schema()) == [
             {
                 u'label': u'Jaźń',
-                u'slug' : u'jazn',
                 u'type' : int
             },
             {
                 u'label': u'_jAźń 1',
-                u'slug' : u'jazn-1',
                 u'type' : unicode
             },
             {
                 u'label': u'jazn',
-                u'slug' : u'jazn',
                 u'type' : float
             }
         ]
@@ -353,17 +329,14 @@ def test_create_from_file_with_custom_csv_opts():
         assert list(t.schema()) == [
             {
                 u'label': u'Gęśl',
-                u'slug' : u'gesl',
                 u'type' : int
             },
             {
                 u'label': u'_gĘśl 1',
-                u'slug' : u'gesl-1',
                 u'type' : unicode
             },
             {
                 u'label': u'gesl',
-                u'slug' : u'gesl',
                 u'type' : float
             }
         ]
@@ -398,17 +371,14 @@ def test_create_from_file_with_different_encoding():
         assert list(t.schema()) == [
             {
                 u'label': u'Gęśl',
-                u'slug' : u'gesl',
                 u'type' : int
             },
             {
                 u'label': u'_gĘśl 1',
-                u'slug' : u'gesl-1',
                 u'type' : unicode
             },
             {
                 u'label': u'gesl',
-                u'slug' : u'gesl',
                 u'type' : float
             }
         ]
@@ -429,17 +399,14 @@ def test_create_unicode_as_default_type():
     assert list(t.schema()) == [
         {
             u'label': u'Jaźń',
-            u'slug' : u'jazn',
             u'type' : unicode
         },
         {
             u'label': u'_jAźń 1',
-            u'slug' : u'jazn-1',
             u'type' : unicode
         },
         {
             u'label': u'jazn',
-            u'slug' : u'jazn',
             u'type' : unicode
         }
     ]

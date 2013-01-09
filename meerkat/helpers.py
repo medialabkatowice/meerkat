@@ -1,28 +1,5 @@
 # coding: utf-8
 
-def slugify(text):
-    import re
-    non_alpha = re.compile(r'\W+')
-    chars = {
-        u'ą': u'a', u'ż': u'z', u'ś': u's',
-        u'ź': u'z', u'ę': u'e', u'ć': u'c',
-        u'ń': u'n', u'ó': u'o', u'ł': u'l'
-    }
-
-    if type(text) is str:
-        text = text.decode('utf-8')
-    else:
-        text = unicode(text)
-
-    text = text.lower()
-    for key, val in chars.items():
-        text = text.replace(key, val)
-    text = text.replace('_', '-')
-    text = non_alpha.sub('-', text).strip('-')
-
-    return text
-
-
 def csv_opts(opts):
     return {}
 

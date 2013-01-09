@@ -3,38 +3,6 @@
 import meerkat.helpers as utils
 from nose.tools import raises
 
-# --------------------------------------------------------------
-# utils.slugify tests
-
-def test_basic_slugify():
-    text = utils.slugify(u'Zażółć Gęślą Jaźń')
-    assert u'zazolc-gesla-jazn' == text
-
-
-def test_basic_slugify_with_str_argument():
-    text = utils.slugify('Zażółć Gęślą Jaźń')
-    assert u'zazolc-gesla-jazn' == text
-
-
-def test_basic_slugify_with_numeric_argument():
-    text = utils.slugify(u'1234567890')
-    assert u'1234567890' == text
-
-
-def test_slugify_with_multiple_nonalphanums_in_row():
-    text = utils.slugify(u'Zażółć, Gęślą_Jaźń')
-    assert u'zazolc-gesla-jazn' == text
-
-
-def test_slugify_with_nonalphanums_at_front_and_back():
-    text = utils.slugify(u'  Zażółć, (Gęślą_Jaźń)')
-    assert u'zazolc-gesla-jazn' == text
-
-
-def test_slugify_unicode_output():
-    text = utils.slugify(u'1234567890')
-    assert type(text) == unicode
-
 
 # --------------------------------------------------------------
 # utils.csv_opts tests

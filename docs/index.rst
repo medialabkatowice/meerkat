@@ -99,7 +99,6 @@ Table constructor
    Table constructor takes several optional arguments:
 
    - *labels* is a list of strings (or unicodes) to be used as column labels
-     (and derived column slugs)
    - *types* is a list of python types to be used for storing data in each
      column. Types available are *int*, *float* and *unicode*. It's especially
      helpfull when a numeric values are string labels and should be treated as
@@ -209,13 +208,11 @@ Table methods
     
      - column index as int
      - column name as unicode
-     - column slug as unicode
    
    So all calls below are equivalent:
    ::
     t.column(0)
     t.column(u'Column 1')
-    t.column(u'column-1')
 
 .. method:: value(self, row_index, col_index)
 
@@ -224,13 +221,11 @@ Table methods
 
      - column index as int
      - column name as unicode
-     - column slug as unicode
    
    So all calls below are equivalent:
    ::
     t.value(0, 0)
     t.value(0, u'Column 1')
-    t.value(0, u'column-1')
 
 .. method:: schema(self, new_schema=None)
 
@@ -240,12 +235,10 @@ Table methods
     [
         {
             u'label': u'Full name of the column',
-            u'slug' : u'full-name-of-the-column',
             u'type' : unicode
         },
         {
             u'label': u'Full name of another column',
-            u'slug' : u'full-name-of-another-column',
             u'type' : float
         }
     ]
@@ -255,8 +248,7 @@ Table methods
    successful meerkat will raise the SchemaError. It will raise the same error
    if the length of *new_schema* is different than the current one.
 
-   Each column in *new_schema* should be described by at least *label* and
-   *type* with *slug* being optional and created, if not provided.
+   Each column in *new_schema* should contain both *label* and *type*.
 
 .. method:: append(self, row)
 

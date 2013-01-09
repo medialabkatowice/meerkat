@@ -64,15 +64,6 @@ def test_fetch_column_by_name():
     assert list(t.column(u'Column 1')) == column
 
 
-def test_fetch_column_by_slug():
-    column = [ 1, 4, 1, 7 ]
-
-    t = meerkat.Table(data)
-
-    assert type(t.column(u'column-1')) == types.GeneratorType
-    assert list(t.column(u'column-1')) == column
-
-
 def test_fetch_value_by_index():
     t = meerkat.Table(data)
 
@@ -87,13 +78,6 @@ def test_fetch_value_by_name():
     assert list(t.value(0, u'Column 1')) == 1
 
 
-def test_fetch_value_by_slug():
-    t = meerkat.Table(data)
-
-    assert type(t.value(0, u'column-1')) == types.GeneratorType
-    assert list(t.value(0, u'column-1')) == 1
-
-
 def test_fetch_schema():
     labels = [ u'zażółć', u'gęslą', u'jaźń' ]
     types  = [ int      , float   , unicode ]
@@ -104,17 +88,14 @@ def test_fetch_schema():
     assert list(t.schema()) == [
         {
             u'label': u'zażółć',
-            u'slug' : u'zazolc',
             u'type' : int
         },
         {
             u'label': u'gęslą',
-            u'slug' : u'gesla',
             u'type' : float
         },
         {
             u'label': u'jaźń',
-            u'slug' : u'jazn',
             u'type' : unicode
         }
     ]
