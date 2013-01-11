@@ -111,3 +111,63 @@ def test_modify_schema_with_duplicated_labels():
 
     t = meerkat.Table(labels=labels, types=types)
     t.schema(new_schema)
+
+
+def test_modify_append_row():
+    data = [
+        [ 1,  2,     3   ],
+        [ 4,  5,     6   ],
+        [ 7,  u'X',  9.0 ]
+    ]
+    new_row  = [ 1, u'Y', 3.0 ]
+
+    t = meerkat.Table(data)
+    t.append(new_row)
+
+    assert list(t.rows()) == [
+        [ 1, u'2', 3.0 ],
+        [ 4, u'5', 6.0 ],
+        [ 7, u'X', 9.0 ]
+        [ 1, u'Y', 3.0 ]
+    ]
+    assert t.rows_count == 4
+    assert t.cols_count == 3
+
+
+@raises(SchemaError)
+def test_modify_append_too_long_row():
+    data = [
+        [ 1,  2,     3   ],
+        [ 4,  5,     6   ],
+        [ 7,  u'X',  9.0 ]
+    ]
+    new_row  = [ 1, u'Y', 3.0, u'Z' ]
+
+    t = meerkat.Table(data)
+    t.append(new_row)
+
+
+@raises(SchemaError)
+def test_modify_append_too_short_row():
+    data = [
+        [ 1,  2,     3   ],
+        [ 4,  5,     6   ],
+        [ 7,  u'X',  9.0 ]
+    ]
+    new_row  = [ 1, u'Y' ]
+
+    t = meerkat.Table(data)
+    t.append(new_row)
+
+
+@raises(SchemaError)
+def test_modify_append_row_with_wrong_types():
+    data = [
+        [ 1,  2,     3   ],
+        [ 4,  5,     6   ],
+        [ 7,  u'X',  9.0 ]
+    ]
+    new_row  = [ 3.14, 10, u'Z' ]
+
+    t = meerkat.Table(data)
+    t.append(new_row)
