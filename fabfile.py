@@ -25,3 +25,9 @@ def update():
     make_docs()
     local("git diff")
 
+def push():
+    local("git checkout dev")
+    local("git status")
+    local("git add -p")
+    local("git commit")
+    local("git push origin dev")
