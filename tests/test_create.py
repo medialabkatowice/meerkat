@@ -412,6 +412,28 @@ def test_create_unicode_as_default_type():
         }
     ]
 
+
+def test_create_Column_X_as_default_label():
+    types = [ int, float, unicode ]
+
+    t = meerkat.Table(types=types)
+
+    assert list(t.schema()) == [
+        {
+            u'label': u'Column 1',
+            u'type' : int
+        },
+        {
+            u'label': u'Column 2',
+            u'type' : float
+        },
+        {
+            u'label': u'Column 3',
+            u'type' : unicode
+        }
+    ]
+
+
 @raises(SchemaError)
 def test_create_with_duplicated_column_labels():
     labels = [ u'zażółć', u'gęślą', u'zażółć' ]
