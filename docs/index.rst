@@ -253,7 +253,7 @@ Table methods
 .. method:: append(self, row)
 
    Appends *row* into the table. If values inside *row* can't be cast according
-   to the schema, SchemaError is raised. 
+   to the schema or *row*'s length differs from schema length SchemaError is raised. 
 
 .. method:: dump(self, \*\*csv_opts)
 
