@@ -7,16 +7,6 @@ from nose.tools import raises
 # --------------------------------------------------------------
 # utils.csv_opts tests
 
-@raises(TypeError)
-def test_csv_opts_with_no_path():
-    csv_opts = utils.csv_opts()
-
-
-@raises(TypeError)
-def test_csv_opts_with_no_path_but_with_arguments():
-    csv_opts = utils.csv_opts({})
-
-
 def test_csv_opts_defaults():
     csv_opts = utils.csv_opts('data.csv')
 
@@ -36,10 +26,10 @@ def test_csv_opts_overriding_defaults():
         u'quotechar': u',,',
         u'encoding' : u'utf-16'
     }
-    csv_opts = utils.csv_opts('data.csv', opts)
+    csv_opts = utils.csv_opts('data.csv', **opts)
 
     assert csv_opts == {
-        u'path'     : 'data.csv',
+        u'path'     : u'data.csv',
         u'header'   : False,
         u'delimiter': u'|',
         u'quotechar': u',,',
@@ -52,7 +42,7 @@ def test_csv_opts_overriding_selected_defaults():
         u'header'   : False,
         u'encoding' : u'utf-16'
     }
-    csv_opts = utils.csv_opts('data.csv', opts)
+    csv_opts = utils.csv_opts('data.csv', **opts)
 
     assert csv_opts == {
         u'path'     : 'data.csv',
