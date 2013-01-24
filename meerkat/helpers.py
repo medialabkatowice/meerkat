@@ -3,6 +3,7 @@
 Collection of auxilary helper functions.
 '''
 
+
 def csv_opts(fname, **user_opts):
     '''
     Keep the default csv options and returns user update ones.
@@ -15,7 +16,7 @@ def csv_opts(fname, **user_opts):
         u'encoding' : u'utf-8'
     }
     opts.update(user_opts)
-    
+
     return opts
 
 
@@ -50,4 +51,3 @@ def discover_type_of(column):
 
     # return the last successful type
     return col_type if empty_cells != len(column) else unicode
-
